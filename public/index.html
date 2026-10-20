@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbit – AI Chatbot</title>
+  <meta name="description" content="Orbit is a friendly general-purpose AI chatbot. Ask questions, write, brainstorm and learn.">
+  <meta name="theme-color" content="#1b1d21">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b1d21'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23b6f23a' stroke-width='3'/%3E%3Ccircle cx='24' cy='9' r='3' fill='%23ff6f4f'/%3E%3C/svg%3E">
+  <script>
+    try {
+      var t = localStorage.getItem('orbit-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#input">Skip to message box</a>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">ORBIT</span>
+        <span class="brand-tag mono">general-purpose AI</span>
+      </div>
+      <div class="actions">
+        <button type="button" id="new-chat" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <span>New chat</span>
+        </button>
+        <button type="button" id="theme-toggle" class="btn btn-icon" aria-label="Switch to light theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="scene" aria-label="Orbit the robot">
+        <div class="stage">
+          <div class="robot" id="robot"><img src="/assets/robot.png" width="1254" height="1254" alt="Orbit, a friendly pixel-art robot with a glowing screen face, waving hello."></div>
+          <p class="speech">Hey, I’m Orbit. What’s on your mind?</p>
+        </div>
+        <p class="status mono"><span class="status-dot" aria-hidden="true"></span><span id="status-text">ONLINE · READY</span></p>
+      </section>
+
+      <section class="chat" aria-label="Chat with Orbit">
+        <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0" aria-label="Conversation">
+          <div class="empty" id="empty">
+            <p class="label mono">TRY ASKING</p>
+            <div class="chips" id="chips">
+              <button type="button" class="chip" data-prompt="Explain how black holes work in simple terms.">Explain black holes simply</button>
+              <button type="button" class="chip" data-prompt="Give me 10 creative name ideas for a coffee shop.">10 coffee shop names</button>
+              <button type="button" class="chip" data-prompt="Write a friendly email asking my landlord to fix a leaking tap.">Write a polite email</button>
+              <button type="button" class="chip" data-prompt="What are three good habits for learning something new quickly?">Habits for learning fast</button>
+            </div>
+          </div>
+        </div>
+
+        <form class="composer" id="composer" autocomplete="off">
+          <label class="sr-only" for="input">Message Orbit</label>
+          <textarea id="input" rows="1" maxlength="2000" placeholder="Message Orbit…" enterkeyhint="send"></textarea>
+          <div class="composer-row">
+            <span class="hint mono" id="hint">Enter to send · Shift+Enter for new line</span>
+            <span class="count mono" id="count" aria-hidden="true">0/2000</span>
+            <button type="submit" id="send" class="btn btn-primary" disabled>
+              <span>Send</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
